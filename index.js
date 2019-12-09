@@ -1,23 +1,21 @@
 /**
  * Environment
  */
-require('./app/config/env');
+import env from './app/config/env'
 console.log(process.env.MAIL_USER)
 console.log(process.env.MAIL_PASSWORD)
 /**
  * Database Connection
 */
-var sequelize = require('./app/imports/DB.js');
+import sequelize from './app/imports/DB.js';
 
 /**
  * Libraries
 */
-const bodyParser = require("body-parser");
-const express = require('express');
+import bodyParser from "body-parser";
+import express from 'express';
 const app = express();
-const path = require('path');
-const fileupload = require('express-fileupload');
-const Passport = require('./app/middlewares/Passport');
+import fileupload from 'express-fileupload';
 
 /**
  * Express Configuration
@@ -66,5 +64,7 @@ async function startServer(){
   }
 }
 
-//Main Method --
+/**
+ * Main Method
+ */
 startServer();
