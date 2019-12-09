@@ -1,7 +1,7 @@
 import AuthenticationController from '../controllers/AuthenticationController';
 import UserController from '../controllers/UserController';
+import passport from 'passport';
 
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt;

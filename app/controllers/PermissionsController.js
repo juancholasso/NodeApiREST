@@ -1,7 +1,7 @@
 var Permission = require('../models/Permission.js');
 
 /**
- * PermissionController
+ * PermissionsController
  */
 class PermissionsController{
 

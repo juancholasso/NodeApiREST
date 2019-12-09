@@ -6,7 +6,6 @@ import sequelize from '../imports/DB.js';
 /**
  * RolesController
  */
-
 class RolesController{
 
     constructor(){

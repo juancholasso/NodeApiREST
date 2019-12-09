@@ -99,7 +99,5 @@ class UserController{
     }
 }
 
-
-
 //Exports-------------------------------------
 module.exports = UserController;

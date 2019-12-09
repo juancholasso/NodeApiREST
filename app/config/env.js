@@ -29,6 +29,6 @@ process.env.MAIL_SERVICE = process.env.MAIL_SERVICE || "gmail"
 process.env.MAIL_USER = process.env.MAIL_USER || "example@gmail.com"
 process.env.MAIL_PASSWORD = process.env.MAIL_PASSWORD || "passexample"
 
-
 //JWT
 process.env.SEED = process.env.SEED || "r27-@B_tQ6C+dx2MpsTP$F8*k+3J+Q"
+process.env.EXPIRESIN = process.env.EXPIRESIN || (60 * 10)

@@ -1,9 +1,8 @@
 import Mail from '../imports/Mail.js';
 
 /**
- * RolesController
+ * ExampleController
  */
-
 class ExampleController{
 
     constructor(){
