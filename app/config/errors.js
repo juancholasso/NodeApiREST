@@ -4,3 +4,8 @@ process.env.errors = JSON.stringify({
     "service_not_found" : "Service not found",
     "health_check" : "Service ok - Health Check"
 })
+
+process.env.validators = JSON.stringify({
+    "required":"The :attribute field must not be empty.",
+    "email":'E-mail must be a valid email address.' 
+})

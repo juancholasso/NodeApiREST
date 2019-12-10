@@ -1,6 +1,4 @@
-import Role from '../models/Role.js';
 import UserController from '../controllers/UserController';
-import RolesController from '../controllers/RolesController';
 
 /**
  * Services for app web
@@ -10,7 +8,6 @@ class UserService{
 
     constructor(){
         this.userController = new UserController;
-        this.rolesController = new RolesController
     }
 
      async getUsers(req, res){

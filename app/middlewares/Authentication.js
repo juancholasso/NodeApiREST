@@ -8,6 +8,7 @@ let decodeToken =  async function (req, res, next){
     try{
         let token = req.headers.authorization;
         req.payload = authenticationHelper.decodeJWT(token)
+        console.log("token", token)
         next();
     }
     catch(err){

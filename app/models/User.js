@@ -31,7 +31,8 @@ var User = sequelize.define('Users', {
     },
     iddocument: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
     }
 },{
     onUpdate: 'CASCADE',

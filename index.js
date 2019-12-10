@@ -2,8 +2,7 @@
  * Environment
  */
 import env from './app/config/env'
-console.log(process.env.MAIL_USER)
-console.log(process.env.MAIL_PASSWORD)
+
 /**
  * Database Connection
 */
@@ -12,10 +11,12 @@ import sequelize from './app/imports/DB.js';
 /**
  * Libraries
 */
-import bodyParser from "body-parser";
 import express from 'express';
 const app = express();
 import fileupload from 'express-fileupload';
+import Passport from './app/middlewares/Passport';
+import bodyParser from "body-parser";
+
 
 /**
  * Express Configuration
@@ -34,11 +35,7 @@ module.exports.app = app;
 /**
  * Models
 */
-require('./app/models/Permission.js');
-require('./app/models/Role.js');
 require('./app/models/User.js');
-require('./app/models/UsersHasRoles.js');
-require('./app/models/RolesHasPermissions.js');
 
 /**
  * Start Server

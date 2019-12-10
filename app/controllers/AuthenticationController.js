@@ -1,5 +1,4 @@
 import UserController from '../controllers/UserController';
-import RolesController from '../controllers/RolesController';
 import bcrypt from 'bcrypt';
 
 /**
@@ -9,7 +8,6 @@ class AuthenticationController{
 
     constructor(){
         this.userController = new UserController;
-        this.rolesController = new RolesController;
     }
   
     async checkEmailAndPassword(email, password){

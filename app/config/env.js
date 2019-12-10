@@ -1,4 +1,5 @@
 import errors from './errors'
+import success from './success'
 
 //PORT LISTENING SERVER
 process.env.PORT = process.env.PORT || 3000
@@ -31,4 +32,4 @@ process.env.MAIL_PASSWORD = process.env.MAIL_PASSWORD || "passexample"
 
 //JWT
 process.env.SEED = process.env.SEED || "r27-@B_tQ6C+dx2MpsTP$F8*k+3J+Q"
-process.env.EXPIRESIN = process.env.EXPIRESIN || (60 * 10)
+process.env.EXPIRESIN = process.env.EXPIRESIN || 600

@@ -1,8 +1,7 @@
 import User from '../models/User';
-import Role from '../models/Role'
-import UsersHasRoles from '../models/UsersHasRoles.js';
 import bcrypt from 'bcrypt';
 import sequelize from '../imports/DB.js';
+
 /**
  * UserController
  */
@@ -10,12 +9,7 @@ class UserController{
     
     async getUsers(){
         try{
-            let users = await User.findAll({
-                include: [{
-                    as: "roles",
-                    model: Role
-                }]
-              })
+            let users = await User.findAll();
             return users;
         }
         catch(err){
@@ -23,7 +17,7 @@ class UserController{
         }
     }
     
-    async createUser(pname, plastname, ppassword, piddocument, pemail, ptelephone, pidrol ){
+    async createUser(pname, plastname, ppassword, piddocument, pemail, ptelephone ){
         let transaction;
         try{
             transaction = await sequelize.transaction();
@@ -36,8 +30,6 @@ class UserController{
                 email:pemail,
                 telephone:parseInt(ptelephone),
             }, {transaction: transaction})
-
-            await UsersHasRoles.create({iduser:newUser.iduser, idrol:pidrol}, {transaction: transaction});
 
             await transaction.commit();
         }
@@ -56,7 +48,7 @@ class UserController{
         }
         catch(err){
             await transaction.rollback();
-            throw err;
+            throw new Error(err);
         }
     }
     
@@ -64,24 +56,6 @@ class UserController{
         try{
             let userRes = await User.findByPk(iduser);
             return userRes;
-        }
-        catch(err){
-            throw err;
-        }
-    }
-
-    async addRole(iduser, idrol){
-        try{
-            await UsersHasRoles.create({iduser:iduser, idrol:idrol});
-        }
-        catch(err){
-            throw err;
-        }
-    }
-
-    async removeRole(iduser, idrol){
-        try{
-            await UsersHasRoles.destroy({ where:{ iduser:iduser, idrol:idrol }});
         }
         catch(err){
             throw err;

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
  * Generate JsonWebToken from user
  */
 function generateJWT(user){
-    return jwt.sign({ data: user }, process.env.SEED, { expiresIn: process.env.EXPIRESIN });
+    return jwt.sign({ data: user }, process.env.SEED, { expiresIn: 60*60*24 });
 }
 
 /**

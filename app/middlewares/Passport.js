@@ -15,23 +15,23 @@ const userController = new UserController;
 passport.use('login',new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
-}, 
-async (email, password, done) => {
-    try{
-        let user = await userController.getUserByEmail(email);
-        if (user == null) {
+    }, 
+    async (email, password, done) => {
+        try{
+            let user = await userController.getUserByEmail(email);
+            if (user == null) {
+                return done(null, false);
+            }
+            else if(await authenticationController.checkEmailAndPassword(email, password)){
+                return done(null, user);
+            }
             return done(null, false);
         }
-        else if(await authenticationController.checkEmailAndPassword(email, password)){
-            return done(null, user);
+        catch(err){
+            return done(err)
         }
-        return done(null, false);
     }
-    catch(err){
-        console.log(err)
-        return done(err)
-    }
-}));
+));
 
 /**
  * JWTStrategy guard for routes
@@ -41,6 +41,8 @@ passport.use('jwt',new JwtStrategy({
         secretOrKey   : process.env.SEED
     },
     function (jwtPayload, done) {
+        console.log("JWT", jwtPayload);
+        console.log("done", done)
         return done(null, true);
     }
 ));
