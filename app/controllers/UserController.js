@@ -1,12 +1,15 @@
+import BaseController from './BaseController';
 import User from '../models/User';
-import bcrypt from 'bcrypt';
-import sequelize from '../imports/DB.js';
 
 /**
  * UserController
  */
-class UserController{
+class UserController extends BaseController{
     
+    constructor(){
+        super();
+    }
+
     async getUsers(){
         try{
             let users = await User.findAll();

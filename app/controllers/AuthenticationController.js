@@ -1,12 +1,13 @@
+import BaseController from './BaseController';
 import UserController from '../controllers/UserController';
-import bcrypt from 'bcrypt';
 
 /**
  * AuthenticationController 
  */
-class AuthenticationController{
+class AuthenticationController extends BaseController{
 
     constructor(){
+        super();
         this.userController = new UserController;
     }
   

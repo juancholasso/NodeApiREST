@@ -1,5 +1,5 @@
 import AuthenticationService from '../services/AuthenticationService';
-import authenticationHelper from '../helpers/AuthenticationHelper';
+import AuthenticationHelper from '../helpers/AuthenticationHelper';
 
 /**
  * Decode JWT to user JSON
@@ -7,7 +7,7 @@ import authenticationHelper from '../helpers/AuthenticationHelper';
 let decodeToken =  async function (req, res, next){
     try{
         let token = req.headers.authorization;
-        req.payload = authenticationHelper.decodeJWT(token)
+        req.payload = AuthenticationHelper.decodeJWT(token)
         next();
     }
     catch(err){
