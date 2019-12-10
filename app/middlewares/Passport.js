@@ -41,8 +41,6 @@ passport.use('jwt',new JwtStrategy({
         secretOrKey   : process.env.SEED
     },
     function (jwtPayload, done) {
-        console.log("JWT", jwtPayload);
-        console.log("done", done)
         return done(null, true);
     }
 ));
