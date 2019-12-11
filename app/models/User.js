@@ -33,6 +33,10 @@ var User = sequelize.define('Users', {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
+    },
+    token: {
+        type: Sequelize.TEXT,
+        allowNull: true
     }
 },{
     onUpdate: 'CASCADE',

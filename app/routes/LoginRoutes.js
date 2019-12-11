@@ -1,18 +1,11 @@
 import express from 'express';
-import passport from 'passport';
-import authenticationHelper from '../helpers/AuthenticationHelper';
+import AuthenticationService from '../services/AuthenticationService';
 
 const router = express.Router()
+const authenticationService = new AuthenticationService
 
-router.post('/login', (req, res, next)=>{
-    passport.authenticate('login', (err, user, info)=>{
-        if(err)
-            return res.status(500).json({error: JSON.parse(process.env.errors).internal_server_error });
-        if(!user)
-            return res.status(401).json({error: JSON.parse(process.env.errors).user_pass_invalid });
-        let token = authenticationHelper.generateJWT(user);
-        return res.status(200).json({token:token});
-    })(req, res, next)
-})
+router.post('/login', (req, res, next)=>{ authenticationService.login(req,res,next) })
+router.get('/api/logout', (req, res)=>{ authenticationService.logout(req,res) })
+
 
 module.exports = router

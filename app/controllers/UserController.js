@@ -23,12 +23,12 @@ class UserController extends BaseController{
     async createUser(pname, plastname, ppassword, piddocument, pemail, ptelephone ){
         let transaction;
         try{
-            transaction = await sequelize.transaction();
+            transaction = await this.sequelize.transaction();
 
             let newUser = await User.create({
                 name:pname,
                 lastname:plastname,
-                password:bcrypt.hashSync(ppassword,10),
+                password:this.bcrypt.hashSync(ppassword,10),
                 iddocument:piddocument,
                 email:pemail,
                 telephone:parseInt(ptelephone),
@@ -45,13 +45,13 @@ class UserController extends BaseController{
     async deleteUser(iduser){
         let transaction;
         try{
-            transaction = await sequelize.transaction();
+            transaction = await this.sequelize.transaction();
             await User.destroy({ where: { iduser: iduser } }, {transaction: transaction});
             await transaction.commit();
         }
         catch(err){
             await transaction.rollback();
-            throw new Error(err);
+            throw err;
         }
     }
     
@@ -69,6 +69,15 @@ class UserController extends BaseController{
         try{
             let userRes = await User.findOne({where:{email: pEmail}});
             return userRes;
+        }
+        catch(err){
+            throw err;
+        }
+    }
+
+    async updateToken(piduser, ptoken){
+        try{
+            await User.update({token: ptoken}, {where : {iduser:piduser}});
         }
         catch(err){
             throw err;

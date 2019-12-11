@@ -12,11 +12,6 @@ let routes = [];
 /**
  * Routes
  */
-//Module SignUp, Remember Password
-app.use('/', require('./RegisterRoutes') )
-
-//Module Logín Authentication
-app.use('/', require('./LoginRoutes') )
 
 /**
  * All routes for /api/* are protected
@@ -24,6 +19,7 @@ app.use('/', require('./LoginRoutes') )
  */
 app.use('/api/*', passport.authenticate('jwt', { session: false }));
 app.use('/api/*', authmiddle.decodeToken);
+app.use('/api/*', authmiddle.checkToken);
 
 //Module Users
 app.use('/api/users', require('./UsersRoutes') )
@@ -31,6 +27,12 @@ app.use('/api/users', require('./UsersRoutes') )
 /**
  * End Routes protected ----------------------------------------------
 */
+
+//Module SignUp, Remember Password
+app.use('/', require('./RegisterRoutes') )
+
+//Module Logín Authentication
+app.use('/', require('./LoginRoutes') )
 
 //Health Check
 router.get('/health-check', (req, res) => { res.status(200).json({ok: JSON.parse(process.env.errors).health_check })} );

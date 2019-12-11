@@ -7,7 +7,8 @@ import sequelize from '../imports/DB.js';
 class BaseController{
 
     constructor(){
-
+        this.sequelize = sequelize;
+        this.bcrypt = bcrypt;
     }
    
 }

@@ -40,7 +40,7 @@ passport.use('jwt',new JwtStrategy({
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         secretOrKey   : process.env.SEED
     },
-    function (jwtPayload, done) {
+    (jwtPayload, done) => {
         return done(null, true);
     }
 ));

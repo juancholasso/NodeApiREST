@@ -1,5 +1,6 @@
 import errors from './errors'
 import success from './success'
+import validators from './validators'
 
 //PORT LISTENING SERVER
 process.env.PORT = process.env.PORT || 3000

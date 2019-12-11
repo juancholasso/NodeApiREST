@@ -1,12 +1,14 @@
+import BaseService from './BaseService';
 import UserController from '../controllers/UserController';
 
 /**
  * Services for app web
  */
 
-class UserService{
+class UserService extends BaseService{
 
     constructor(){
+        super();
         this.userController = new UserController;
     }
 

@@ -15,7 +15,7 @@ class AuthenticationController extends BaseController{
         try{
             let user = await this.userController.getUserByEmail(email);
             if(user){
-                if(bcrypt.compareSync(password, user.get('password'))){
+                if(this.bcrypt.compareSync(password, user.get('password'))){
                     return true;
                 }
                 return false;
