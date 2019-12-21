@@ -15,17 +15,19 @@ let routes = [];
 
 /**
  * All routes for /api/* are protected
- * Routes protected -------------------------------------------------
+ * Routes protected --------------------------------------------------------------------
  */
+
+//Middlewares
 app.use('/api/*', passport.authenticate('jwt', { session: false }));
 app.use('/api/*', authmiddle.decodeToken);
 app.use('/api/*', authmiddle.checkToken);
 
 //Module Users
-app.use('/api/users', require('./UsersRoutes') )
+app.use('/api/users', require('./ProfileRoutes') )
 
 /**
- * End Routes protected ----------------------------------------------
+ * End Routes protected -----------------------------------------------------------------
 */
 
 //Module SignUp, Remember Password

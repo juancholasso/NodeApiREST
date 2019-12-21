@@ -13,22 +13,16 @@ class RegisterService extends BaseService{
         this.userController = new UserController;
     }
 
+    /**
+     * Create user, first validate fields required for UserModel
+     */
     async signUp(req, res){
         try{
-            const validator = new Validator(req.body, {
-                email: 'required|email',
-                password: 'required',
-                name : 'required',
-                lastname: 'required',
-                telephone: 'required|digitsBetween:8,12',
-                iddocument: 'required|digitsBetween:8,12'
-                },JSON.parse(process.env.validators)
-            );
-            var check = await validator.check();
+            var check = await this.validatorModels.validateUser(req.body);
             if(!check)
                 res.status(400).json({"error":validator.errors});
 
-            await this.userController.createUser(req.body.name, req.body.lastname, req.body.password, req.body.iddocument, req.body.email, req.body.telephone);
+            await this.userController.createUser(req.body.name, req.body.lastname, req.body.password, req.body.iddocument, req.body.email, req.body.telephone, req.body.nickname);
             res.status(200).json({"ok":JSON.parse(process.env.success).user_created});
         }
         catch(err){

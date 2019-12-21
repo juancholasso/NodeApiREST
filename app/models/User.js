@@ -8,35 +8,46 @@ var User = sequelize.define('Users', {
         primaryKey: true, 
         autoIncrement: true
     },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false
+    iddocument: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+        unique: true,
     },
     name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(255),
         allowNull: false
     },
     lastname: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(255),
         allowNull: false
-    },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
     },
     telephone: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(255),
         allowNull: false
     },
-    iddocument: {
-        type: Sequelize.STRING,
+    image:{
+        type: Sequelize.TEXT,
+        allowNull: true,
+        defaultValue: null,
+    },
+    email: {
+        type: Sequelize.STRING(255),
         allowNull: false,
-        unique: true,
+        unique: true
+    },
+    password: {
+        type: Sequelize.STRING(255),
+        allowNull: false
     },
     token: {
         type: Sequelize.TEXT,
-        allowNull: true
+        allowNull: true,
+        defaultValue: null,
+    },
+    nickname: {
+        type: Sequelize.STRING(255),
+        unique: true,
+        allowNull: false
     }
 },{
     onUpdate: 'CASCADE',

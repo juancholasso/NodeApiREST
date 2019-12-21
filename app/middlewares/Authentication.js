@@ -25,8 +25,12 @@ let decodeToken =  async function (req, res, next){
 let checkToken =  async function (req, res, next){
     try{
         let user = await userController.getUser(req.payload.data.iduser);
-        if(user.token == req.headers.authorization.replace("Bearer ",""))
-            next();
+        //Validate if user exist
+        if(user)
+            if(user.token == req.headers.authorization.replace("Bearer ",""))
+                next();
+            else
+                res.status(401).json({"error": JSON.parse(process.env.errors).token_invalid})
         else
             res.status(401).json({"error": JSON.parse(process.env.errors).token_invalid})
     }
@@ -35,5 +39,48 @@ let checkToken =  async function (req, res, next){
     }
 };
 
+/**
+ * This middleware protect the folder storage only for user authenticated
+ */
+let checkTokenByStorageFiles = async function (req, res, next){
+    try{
+        //Token sent by query params
+        let token = req.query.token;
+        //Concate Bearer to token
+        let userPayload = AuthenticationHelper.decodeJWT("Bearer "+token);
+        let user = await userController.getUser(userPayload.data.iduser);
+        req.payload = userPayload;
+        //Validate if user exist
+        if(user)
+            if(user.token == token)
+                next();
+            else
+                res.status(401).json({"error": JSON.parse(process.env.errors).token_invalid})
+        else
+            res.status(401).json({"error": JSON.parse(process.env.errors).token_invalid})
+    }
+    catch(err){
+        res.status(500).json({"error":JSON.parse(process.env.errors).internal_server_error});
+    }
+}
+
+/**
+ * This middleware only allows authenticated user access to his respective folder
+ */
+let checkUserFolder = async function (req, res, next){
+    try{
+        let params = req.params;
+        if(params.id == req.payload.data.iduser)
+            next();
+        else
+            res.status(401).json({"error": JSON.parse(process.env.errors).token_invalid})
+    }
+    catch(err){
+        res.status(500).json({"error":JSON.parse(process.env.errors).internal_server_error});
+    }
+}
+
 module.exports.decodeToken = decodeToken;
 module.exports.checkToken = checkToken;
+module.exports.checkTokenByStorageFiles = checkTokenByStorageFiles;
+module.exports.checkUserFolder = checkUserFolder;

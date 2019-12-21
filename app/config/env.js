@@ -9,10 +9,10 @@ process.env.PORT = process.env.PORT || 3000
 process.env.PRODUCTION = false
 
 //VARIABLES DATABASE
-process.env.DB_HOST = process.env.DB_HOST || "ec2-23-23-195-205.compute-1.amazonaws.com"
-process.env.DB_DATABASE = process.env.DB_DATABASE || "d1pqh8mlom488f"
-process.env.DB_USERNAME = process.env.DB_USERNAME || "xvxhwarcjquwwy"
-process.env.DB_PASSWORD = process.env.DB_PASSWORD || "183de43800d7a9e6b0cfad455783b15383ff8260c92647250de71824f17b8bfc"
+process.env.DB_HOST = process.env.DB_HOST || "ec2-107-21-122-38.compute-1.amazonaws.com"
+process.env.DB_DATABASE = process.env.DB_DATABASE || "d6ho66lcuehn77"
+process.env.DB_USERNAME = process.env.DB_USERNAME || "goyrkqdlmhyutc"
+process.env.DB_PASSWORD = process.env.DB_PASSWORD || "ee7432455d757046196ce598d14fc7f3d7af9371dc4ddf9758af0b9ad8af327e"
 process.env.DB_DIALECT = process.env.DB_DIALECT || "postgres"
 
 //DATA ADMIN

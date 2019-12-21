@@ -16,15 +16,26 @@ const app = express();
 import fileupload from 'express-fileupload';
 import Passport from './app/middlewares/Passport';
 import bodyParser from "body-parser";
-
+import authmiddle from './app/middlewares/Authentication.js';
 
 /**
  * Express Configuration
 */
-app.use(express.static(__dirname+'/app/public')); //Public folder
+//Protect folder storage only for authenticated users
+app.use('/storage', authmiddle.checkTokenByStorageFiles);
+//Protect folder user for id
+app.use('/storage/profile/:id/*', authmiddle.checkUserFolder);
+
+app.use('/storage',express.static('./storage')); //Public folder
+app.use('/public',express.static('./public')); //Public folder
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //For api-rest
-app.use(fileupload()); //Package for upload files
+app.use(fileupload(
+  {
+    // useTempFiles : true,
+    // tempFileDir : './storage/temp'
+  }
+)); //Package for upload files
 
 /**
  * Exporting variables for use with routes

@@ -5,6 +5,9 @@ log4js.configure({
     categories: { default: { appenders: ['cheese'], level: 'debug' } }
 });
 
+/**
+ * Return logger
+ */
 function getLogger(){
     return log4js.getLogger('cheese');
 }
