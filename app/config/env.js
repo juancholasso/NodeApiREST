@@ -9,10 +9,10 @@ process.env.PORT = process.env.PORT || 3000
 process.env.PRODUCTION = false
 
 //VARIABLES DATABASE
-process.env.DB_HOST = process.env.DB_HOST || "ec2-107-21-122-38.compute-1.amazonaws.com"
-process.env.DB_DATABASE = process.env.DB_DATABASE || "d6ho66lcuehn77"
-process.env.DB_USERNAME = process.env.DB_USERNAME || "goyrkqdlmhyutc"
-process.env.DB_PASSWORD = process.env.DB_PASSWORD || "ee7432455d757046196ce598d14fc7f3d7af9371dc4ddf9758af0b9ad8af327e"
+process.env.DB_HOST = process.env.DB_HOST || "ec2-3-215-83-17.compute-1.amazonaws.com"
+process.env.DB_DATABASE = process.env.DB_DATABASE || "dcimmbvpbod4kj"
+process.env.DB_USERNAME = process.env.DB_USERNAME || "bxrikxyhhmyfve"
+process.env.DB_PASSWORD = process.env.DB_PASSWORD || "64ae17519324720698ededc2ea7cdd0a43674b9717d4666928491e987bb46304"
 process.env.DB_DIALECT = process.env.DB_DIALECT || "postgres"
 
 //DATA ADMIN
@@ -20,6 +20,7 @@ process.env.ADMIN_ROLE = "admin"
 process.env.ADMIN_NAME = "Juan Pablo"
 process.env.ADMIN_LASTNAME = "Camargo Lasso"
 process.env.ADMIN_PASSWORD = "1234Juan"
+process.env.NICKNAME = "juancholasso"
 process.env.ADMIN_EMAIL = "jpcamargol@unbosque.edu.co"
 process.env.ADMIN_TELEPHONE = "3223737426"
 process.env.ADMIN_IDDOCUMENT = "1233691706"

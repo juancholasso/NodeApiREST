@@ -1,4 +1,8 @@
 /**
+ * TemplateBase Node Created by Juancholasso
+ */
+
+/**
  * Environment
  */
 import env from './app/config/env'
@@ -17,10 +21,14 @@ import fileupload from 'express-fileupload';
 import Passport from './app/middlewares/Passport';
 import bodyParser from "body-parser";
 import authmiddle from './app/middlewares/Authentication.js';
+var cors = require('cors')
+
 
 /**
  * Express Configuration
 */
+app.use(cors())
+
 //Protect folder storage only for authenticated users
 app.use('/storage', authmiddle.checkTokenByStorageFiles);
 //Protect folder user for id
@@ -60,7 +68,7 @@ async function startServer(){
     app.use('/', routerWeb);
 
     //Start only on the first time deploying or when user admin was delete
-    // await require('./config/StartData.js');
+    // await require('./app/config/StartData.js');
 
     app.listen(process.env.PORT, function () {
       console.log(`App listening on port ${process.env.PORT}!`);

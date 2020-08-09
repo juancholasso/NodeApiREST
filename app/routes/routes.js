@@ -26,6 +26,12 @@ app.use('/api/*', authmiddle.checkToken);
 //Module Users
 app.use('/api/users', require('./ProfileRoutes') )
 
+//Module Songs
+app.use('/api/songs', require('./SongRoutes') )
+
+//Module Playlist
+app.use('/api/playlist', require('./PlaylistRoutes') )
+
 /**
  * End Routes protected -----------------------------------------------------------------
 */
